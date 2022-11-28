@@ -44,7 +44,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
   try {
     const hashedPassword = await hashPassword(password);
-    const updatedUser = await userService.updateUser(id, { login, name: name, password: hashedPassword, avatar: avatar });
+    const updatedUser = await userService.updateUser(id, { login, name: name, password: hashedPassword, avatar });
     res.json(updatedUser);
   }
   catch (err) { return console.log(err); }

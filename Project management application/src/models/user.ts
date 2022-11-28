@@ -5,13 +5,16 @@ const userScheme = new Schema({
   name: {
     type: String,
     required: true,
-  }, login: {
+  }, 
+  login: {
     type: String,
     required: true,
-  }, password: {
+  }, 
+  password: {
     type: String,
     required: true,
-  }, avatar: {
+  }, 
+  avatar: {
     type: String,
     required: false,
   }
