@@ -31,11 +31,11 @@ export const getUserById = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
   const id = req.params['id'];
 
-  const bodyError = checkBody(req.body, ['name', 'login', 'password', 'avatar'])
+  const bodyError = checkBody(req.body, ['name', 'login', 'password'])
   if (bodyError) {
     return res.status(400).send(createError(400, "bad request: " + bodyError));
   }
-  const { login, name, password, avatar } = req.body;
+  const { login, name, password } = req.body;
 
   const foundedUser = await userService.findOneUser({ login });
   if (foundedUser && foundedUser.id !== id) {
@@ -44,7 +44,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
   try {
     const hashedPassword = await hashPassword(password);
-    const updatedUser = await userService.updateUser(id, { login, name: name, password: hashedPassword, avatar });
+    const updatedUser = await userService.updateUser(id, { login, name: name, password: hashedPassword });
     res.json(updatedUser);
   }
   catch (err) { return console.log(err); }
