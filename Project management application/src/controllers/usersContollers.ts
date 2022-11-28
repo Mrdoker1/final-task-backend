@@ -31,7 +31,7 @@ export const getUserById = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
   const id = req.params['id'];
 
-  const bodyError = checkBody(req.body, ['name', 'login', 'password'])
+  const bodyError = checkBody(req.body, ['name', 'login', 'password', 'avatar'])
   if (bodyError) {
     return res.status(400).send(createError(400, "bad request: " + bodyError));
   }
